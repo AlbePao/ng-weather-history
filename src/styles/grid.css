@@ -1,0 +1,63 @@
+.row {
+  @apply -mx-2 my-0 flex flex-wrap;
+}
+
+.row > * {
+  @apply my-0 w-full max-w-full shrink-0 px-2;
+}
+
+.col {
+  @apply shrink-0 grow basis-0;
+}
+
+.col-1 {
+  @apply w-1/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-2 {
+  @apply w-2/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-3 {
+  @apply w-3/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-4 {
+  @apply w-4/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-5 {
+  @apply w-5/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-6 {
+  @apply w-6/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-7 {
+  @apply w-7/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-8 {
+  @apply w-8/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-9 {
+  @apply w-9/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-10 {
+  @apply w-10/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-11 {
+  @apply w-11/12 shrink-0 grow-0 basis-auto;
+}
+
+.col-12 {
+  @apply w-full shrink-0 grow-0 basis-auto;
+}
+
+.col-auto {
+  @apply w-auto shrink-0 grow-0 basis-auto;
+}

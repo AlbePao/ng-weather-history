@@ -1,0 +1,16 @@
+/* Angular CDK Overlay */
+@import '@angular/cdk/overlay-prebuilt';
+
+/* Font */
+@import '@fontsource-variable/roboto';
+
+/* Material Icons Fonts */
+@import '@fontsource/material-icons';
+
+/* Tailwind CSS */
+@import './tailwind';
+
+/* Global styles */
+@import './document';
+@import './heading';
+@import './grid';

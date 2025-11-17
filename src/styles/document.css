@@ -1,0 +1,17 @@
+html {
+  @apply font-body;
+  @apply font-normal;
+}
+
+html,
+body {
+  @apply h-full;
+}
+
+body {
+  @apply bg-slate-100;
+  @apply text-slate-900;
+
+  /* Based on https://www.linkedin.com/feed/update/urn:li:activity:7321474121777709057 */
+  @apply tabular-nums;
+}
