@@ -20,6 +20,8 @@
     "@angular/router": "^20.3.0",
     "@fontsource-variable/roboto": "^5.2.8",
     "@fontsource/material-icons": "^5.2.7",
+    "@ngx-translate/core": "^17.0.0",
+    "@ngx-translate/http-loader": "^17.0.0",
     "@tailwindcss/postcss": "^4.1.17",
     "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
