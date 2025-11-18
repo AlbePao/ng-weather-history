@@ -1,7 +1,5 @@
 <div class="rounded-sm bg-black/90 p-4 text-sm text-white">
   @for (text of tooltipText; track $index) {
-    <div class="whitespace-pre-wrap">
-      {{ text | translate }}
-    </div>
+    <div class="whitespace-pre-wrap">{{ text }}</div>
   }
 </div>

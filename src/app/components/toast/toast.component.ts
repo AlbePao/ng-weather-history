@@ -3,13 +3,12 @@ import { ButtonModule } from '@components/button';
 import { IconComponent } from '@components/icon';
 import { TOAST_DATA } from '@components/toast/toast-config';
 import { ToastRef } from '@components/toast/toast-ref';
-import { TranslatePipe } from '@ngx-translate/core';
 import { injectDestroy } from '@utils/injectDestroy';
 import { takeUntil, timer } from 'rxjs';
 
 @Component({
   selector: 'app-toast',
-  imports: [ButtonModule, IconComponent, TranslatePipe],
+  imports: [ButtonModule, IconComponent],
   templateUrl: './toast.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
