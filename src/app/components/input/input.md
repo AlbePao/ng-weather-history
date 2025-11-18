@@ -11,10 +11,9 @@
 
 ## Outputs
 
-| Output         | Description                                   | Type emitted |
-| -------------- | --------------------------------------------- | ------------ |
-| `elementFocus` | Event emitted when the component gets focused | `void`       |
-| `elementBlur`  | Event emitted when the component loses focus  | `void`       |
+| Output        | Description                                  | Type emitted |
+| ------------- | -------------------------------------------- | ------------ |
+| `elementBlur` | Event emitted when the component loses focus | `void`       |
 
 ## Example
 
