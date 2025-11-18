@@ -1,0 +1,95 @@
+@reference '../../../../styles/tailwind.css';
+
+app-icon {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+app-icon.material-icons {
+  @apply font-icons;
+}
+
+app-icon[appPrefix]:not(app-icon[color]),
+app-icon[appIconPrefix]:not(app-icon[color]),
+app-icon[appSuffix]:not(app-icon[color]),
+app-icon[appIconSuffix]:not(app-icon[color]),
+button[appPrefix] > app-icon:not(app-icon[color]),
+button[appSuffix] > app-icon:not(app-icon[color]) {
+  @apply text-gray-dark;
+}
+
+app-icon[appPrefix],
+app-icon[appIconPrefix],
+app-icon[appSuffix],
+app-icon[appIconSuffix] {
+  @apply px-2;
+}
+
+a[app-button][size='sm'] > app-icon,
+a[app-rounded-button][size='sm'] > app-icon,
+button[app-button][size='sm'] > app-icon,
+button[app-rounded-button][size='sm'] > app-icon {
+  @apply h-5 p-0 text-xl/none;
+}
+
+.icon-8 {
+  @apply text-[8px]/none;
+}
+
+.icon-12 {
+  @apply text-xs/none;
+}
+
+.icon-14 {
+  @apply text-sm/none;
+}
+
+.icon-16 {
+  @apply text-base/none;
+}
+
+.icon-18 {
+  @apply text-lg/none;
+}
+
+.icon-20 {
+  @apply text-xl/none;
+}
+
+.icon-24 {
+  @apply text-2xl/none;
+}
+
+.icon-48 {
+  @apply text-5xl/none;
+}
+
+a[app-button] > app-icon,
+a[app-rounded-button] > app-icon,
+button[app-button] > app-icon,
+button[app-rounded-button] > app-icon {
+  @apply relative align-top;
+}
+
+app-menu > div[cdk-overlay-origin] > app-icon {
+  @apply p-2 align-top;
+}
