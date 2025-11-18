@@ -58,8 +58,7 @@ export class FormFieldComponent implements AfterContentInit {
     this.hasTextSuffix = !!this.suffixChildren.find((s) => s.isText());
   }
 
-     * @example
-/** Initializes the prefix and suffix containers. */
+  /** Initializes the prefix and suffix containers. */
   private _initializePrefixAndSuffix(): void {
     this._checkPrefixAndSuffixTypes();
     // Mark the form field as dirty whenever the prefix or suffix children change. This
