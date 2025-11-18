@@ -1,0 +1,76 @@
+<div class="relative flex">
+  @if (hasContentPrefix) {
+    <div
+      class="absolute inset-y-0 left-0 flex items-center"
+      [class]="isControlDisabled ? 'pointer-events-none opacity-50' : ''"
+    >
+      <ng-content select="[appPrefix], [appIconPrefix]" />
+    </div>
+  }
+  @if (hasTextPrefix) {
+    <div
+      class="bg-gray-light absolute inset-y-0 left-0 flex items-center rounded-s border border-e-0 p-3 text-xs/5 font-semibold text-black select-none"
+      [class]="{
+        'opacity-50': isControlDisabled,
+        'border-danger': isControlInvalid,
+        'border-gray-darker': !isControlInvalid,
+        'border-gray': !isControlInvalid && isFieldValueEmpty,
+        'peer-focus:border-primary': !isControlInvalid,
+      }"
+    >
+      <ng-content select="[appTextPrefix]" />
+    </div>
+  }
+  <ng-content />
+  <label
+    [for]="id"
+    class="absolute top-2 left-1 z-10 origin-left -translate-y-2 scale-75 transform px-2 text-sm/4 font-normal whitespace-pre duration-300 select-none peer-focus:top-2 peer-focus:-translate-y-2 peer-focus:scale-75 peer-focus:px-2"
+    [class]="{
+      'opacity-50': isControlDisabled,
+      'text-danger': isControlInvalid,
+      'peer-focus:text-danger': isControlInvalid,
+      'text-gray-darker': !isControlInvalid,
+      'peer-focus:text-primary': !isControlInvalid,
+      'ml-8': hasContentPrefix || hasTextPrefix,
+      'mr-8': hasContentSuffix || hasTextSuffix,
+      'top-5': isFieldValueEmpty,
+      '-translate-y-1/2': isFieldValueEmpty,
+      'scale-100': isFieldValueEmpty,
+      'whitespace-normal': isFieldValueEmpty,
+    }"
+  >
+    <ng-content select="app-label, [appLabel]" />
+  </label>
+  @if (hasContentSuffix) {
+    <div
+      class="absolute inset-y-0 right-0 flex items-center"
+      [class]="isControlDisabled ? 'pointer-events-none opacity-50' : ''"
+    >
+      <ng-content select="[appSuffix], [appIconSuffix]" />
+    </div>
+  }
+  @if (hasTextSuffix) {
+    <div
+      class="bg-gray-light absolute inset-y-0 right-0 flex items-center rounded-e border border-s-0 p-3 text-xs/5 font-semibold text-black select-none"
+      [class]="{
+        'opacity-50': isControlDisabled,
+        'border-danger': isControlInvalid,
+        'border-gray-darker': !isControlInvalid,
+        'border-gray': !isControlInvalid && isFieldValueEmpty,
+        'peer-focus:border-primary': !isControlInvalid,
+      }"
+    >
+      <ng-content select="[appTextSuffix]" />
+    </div>
+  }
+</div>
+<div
+  class="flex flex-col items-start text-[10px]/none transition-all duration-300 ease-in-out"
+  [class]="{
+    'min-h-5': subscriptSizing() === 'fixed' || isControlInvalid,
+    'py-1': subscriptSizing() === 'fixed' || isControlInvalid,
+    'min-h-0': subscriptSizing() === 'dynamic' && !isControlInvalid,
+  }"
+>
+  <ng-content select="app-error, [appError]" />
+</div>
