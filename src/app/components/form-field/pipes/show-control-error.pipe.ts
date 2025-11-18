@@ -9,7 +9,7 @@ import { ControlErrors } from './control-errors';
 })
 export class ShowControlErrorPipe implements PipeTransform {
   transform(control: AbstractControl | NgModel, errorTypes: ControlErrors | ControlErrors[]): boolean {
-    const hasErrors = !!(control.dirty ?? control.touched) && !!control.errors;
+    const hasErrors = [control.dirty, control.touched].some(Boolean) && !!control.errors;
     const hasOneOrMoreErrors = isArray(errorTypes)
       ? errorTypes.some((error) => !!control.errors?.[error])
       : !!control.errors?.[errorTypes];
