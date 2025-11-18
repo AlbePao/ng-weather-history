@@ -10,7 +10,7 @@ export type IconColors = Colors | 'black';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': '`${iconColor} app-icon select-none relative`',
+    '[class]': '`material-icons ${iconColor} app-icon select-none relative`',
   },
 })
 export class IconComponent {
