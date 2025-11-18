@@ -1,0 +1,34 @@
+<app-card class="mx-auto my-8 flex max-w-96 flex-col gap-4">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <app-form-field>
+      <input appInput type="text" [formControl]="form.controls.address" />
+      <app-label>Address</app-label>
+      @if (form.controls.address | showControlError: 'required') {
+        <app-error>Address is required</app-error>
+      }
+    </app-form-field>
+    <app-form-field>
+      <input appInput type="text" [formControl]="form.controls.city" />
+      <app-label>City</app-label>
+      @if (form.controls.city | showControlError: 'required') {
+        <app-error>City is required</app-error>
+      }
+    </app-form-field>
+    <app-form-field>
+      <select appSelect [formControl]="form.controls.countryCode">
+        <option selected></option>
+        @for (countryCode of countryCodes; track countryCode.code) {
+          <option [value]="countryCode.code">{{ countryCode.name }}</option>
+        }
+      </select>
+      <app-label>Nation</app-label>
+      @if (form.controls.countryCode | showControlError: 'required') {
+        <app-error>Nation is required</app-error>
+      }
+    </app-form-field>
+    <div class="flex justify-end gap-4">
+      <button app-button type="reset">Reset</button>
+      <button app-button type="submit">Submit</button>
+    </div>
+  </form>
+</app-card>
