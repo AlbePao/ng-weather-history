@@ -1,0 +1,9 @@
+<div class="relative mb-5 flex flex-row items-center gap-4 rounded-sm px-5 py-2 shadow-lg" [class]="color">
+  @if (!!icon) {
+    <app-icon>{{ icon }}</app-icon>
+  }
+  <div class="mr-auto">{{ message | translate }}</div>
+  <button app-icon-button type="button" (click)="close()">
+    <app-icon class="text-black">close</app-icon>
+  </button>
+</div>
