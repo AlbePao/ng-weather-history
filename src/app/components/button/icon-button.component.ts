@@ -3,9 +3,6 @@ import { ButtonBase } from './button-base';
 
 export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
 
-/**
- *
- */
 @Component({
   selector: 'button[app-icon-button], a[app-icon-button]',
   template: `<ng-content select="app-icon" />`,

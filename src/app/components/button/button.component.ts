@@ -3,9 +3,6 @@ import { ButtonBase } from './button-base';
 
 export type ButtonAppearance = 'primary' | 'secondary' | 'outline' | 'link' | 'danger' | 'success';
 
-/**
- *
- */
 @Component({
   selector: 'button[app-button], a[app-button]',
   templateUrl: './button.component.html',
