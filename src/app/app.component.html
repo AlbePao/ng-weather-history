@@ -15,14 +15,14 @@
       }
     </app-form-field>
     <app-form-field>
-      <select appSelect [formControl]="form.controls.countryCode">
+      <select appSelect [formControl]="form.controls.countrycode">
         <option selected></option>
         @for (countryCode of countryCodes; track countryCode.code) {
           <option [value]="countryCode.code">{{ countryCode.name }}</option>
         }
       </select>
       <app-label>Nation</app-label>
-      @if (form.controls.countryCode | showControlError: 'required') {
+      @if (form.controls.countrycode | showControlError: 'required') {
         <app-error>Nation is required</app-error>
       }
     </app-form-field>
@@ -32,3 +32,9 @@
     </div>
   </form>
 </app-card>
+
+@if (isLoading$ | async) {
+  <app-spinner diameter="80" />
+} @else if (geocodingCoordinates$ | async; as geocodingCoordinates) {
+  <pre>{{ geocodingCoordinates | json }}</pre>
+}
