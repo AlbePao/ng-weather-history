@@ -15,15 +15,32 @@
       }
     </app-form-field>
     <app-form-field>
-      <select appSelect [formControl]="form.controls.countrycode">
+      <select appSelect [formControl]="form.controls.countryCode">
         <option selected></option>
         @for (countryCode of countryCodes; track countryCode.code) {
           <option [value]="countryCode.code">{{ countryCode.name }}</option>
         }
       </select>
       <app-label>Nation</app-label>
-      @if (form.controls.countrycode | showControlError: 'required') {
+      @if (form.controls.countryCode | showControlError: 'required') {
         <app-error>Nation is required</app-error>
+      }
+    </app-form-field>
+    <app-form-field>
+      <input appInput type="date" [formControl]="form.controls.startDate" />
+      <app-label>Start date</app-label>
+      @if (form.controls.startDate | showControlError: 'required') {
+        <app-error>Start date is required</app-error>
+      }
+    </app-form-field>
+    <app-form-field>
+      <input appInput type="date" [formControl]="form.controls.endDate" />
+      <app-label>End date</app-label>
+      @if (form.controls.endDate | showControlError: 'required') {
+        <app-error>End date is required</app-error>
+      }
+      @if (form.controls.endDate | showControlError: 'maxDateToday') {
+        <app-error>Max end date must be today</app-error>
       }
     </app-form-field>
     <div class="flex justify-end gap-4">

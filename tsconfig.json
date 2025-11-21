@@ -9,7 +9,8 @@
       "@constants/*": ["src/app/constants/*"],
       "@interfaces/*": ["src/app/interfaces/*"],
       "@services/*": ["src/app/services/*"],
-      "@utils/*": ["src/app/utils/*"]
+      "@utils/*": ["src/app/utils/*"],
+      "@validators/*": ["src/app/validators/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,

@@ -10,6 +10,7 @@ import { ToastService } from '@components/toast';
 import { COUNTRY_CODES } from '@constants/country-codes';
 import { GeocodingDataParams } from '@interfaces/geocoding';
 import { GeocodingService } from '@services/geocoding.service';
+import { DateValidators } from '@validators/date-validators';
 import { catchError, map, merge, of, shareReplay, Subject, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -30,21 +31,23 @@ import { catchError, map, merge, of, shareReplay, Subject, switchMap, tap } from
 export class AppComponent {
   private readonly _fb = inject(FormBuilder);
   private readonly _toastService = inject(ToastService);
-  private readonly _geoCodingService = inject(GeocodingService);
+  private readonly _geocodingService = inject(GeocodingService);
 
   protected readonly countryCodes = COUNTRY_CODES;
 
   form = this._fb.group({
     address: this._fb.nonNullable.control<string>('', Validators.required),
     city: this._fb.nonNullable.control<string>('', Validators.required),
-    countrycode: this._fb.nonNullable.control<string>('', Validators.required),
+    countryCode: this._fb.nonNullable.control<string>('', Validators.required),
+    startDate: this._fb.nonNullable.control<string>('', Validators.required),
+    endDate: this._fb.nonNullable.control<string>('', [Validators.required, DateValidators.maxDateToday]),
   });
 
   private readonly _submitHandler$ = new Subject<GeocodingDataParams>();
 
   geocodingCoordinates$ = this._submitHandler$.pipe(
     switchMap((params) =>
-      this._geoCodingService.getCoordinatesFromAddress(params).pipe(
+      this._geocodingService.getCoordinatesFromAddress(params).pipe(
         tap({
           next: (coords) => {
             if (!coords) {
@@ -57,7 +60,7 @@ export class AppComponent {
           error: () =>
             this._toastService.show({
               color: 'danger',
-              message: 'There was an error with your request, try again',
+              message: 'There was an error fetching address coordinates, try again',
               icon: 'warning',
             }),
         }),
@@ -84,7 +87,11 @@ export class AppComponent {
       return;
     }
 
-    // We use form.getRawValue() instead of form.value because the latter show type errors because FormBuilder wraps form controls keys inside a Partial
-    this._submitHandler$.next(this.form.getRawValue());
+    // We use form.getRawValue() instead of form.value because the latter show type errors because FormBuilder wraps form controls keys inside a Partial utility type
+    this._submitHandler$.next({
+      address: this.form.getRawValue().address,
+      city: this.form.getRawValue().city,
+      countrycode: this.form.getRawValue().countryCode,
+    });
   }
 }
