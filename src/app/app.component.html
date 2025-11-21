@@ -52,6 +52,6 @@
 
 @if (isLoading$ | async) {
   <app-spinner diameter="80" />
-} @else if (geocodingCoordinates$ | async; as geocodingCoordinates) {
-  <pre>{{ geocodingCoordinates | json }}</pre>
+} @else if (weatherData$ | async; as weatherData) {
+  <pre>{{ weatherData | json }}</pre>
 }
