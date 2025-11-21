@@ -13,6 +13,11 @@ export class GeocodingService {
 
   private readonly _baseUrl = 'https://api.opencagedata.com/geocode/v1/json';
 
+  /**
+   * Get geocoding data from OpenCage API based on address, city and country code
+   * @param params {@link GeocodingDataParams}
+   * @returns Geocoding data response from OpenCage API
+   */
   getGeocodingDataFromAddress(params: GeocodingDataParams): Observable<GeocodingDataResponse> {
     const { address, city, countrycode } = params;
 
@@ -25,6 +30,11 @@ export class GeocodingService {
     });
   }
 
+  /**
+   * Get geocoding coordinates from OpenCage API based on address, city and country code
+   * @param params {@link GeocodingDataParams}
+   * @returns Geocoding coordinates or null if no results were found
+   */
   getCoordinatesFromAddress(params: GeocodingDataParams): Observable<GeocodingCoordinates | null> {
     return this.getGeocodingDataFromAddress(params).pipe(
       // OpenCage results are ranked from most relevant to least, so we get the first element from the result array. For more information, check https://opencagedata.com/api#ranking
