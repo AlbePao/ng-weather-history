@@ -33,10 +33,13 @@
       'peer-focus:text-primary': !isControlInvalid,
       'ml-8': hasContentPrefix || hasTextPrefix,
       'mr-8': hasContentSuffix || hasTextSuffix,
-      'top-5': isFieldValueEmpty,
-      '-translate-y-1/2': isFieldValueEmpty,
-      'scale-100': isFieldValueEmpty,
-      'whitespace-normal': isFieldValueEmpty,
+      'top-5': isFieldValueEmpty && !shouldRaiseLabel,
+      '-translate-y-1/2': isFieldValueEmpty && !shouldRaiseLabel,
+      'scale-100': isFieldValueEmpty && !shouldRaiseLabel,
+      'whitespace-normal': isFieldValueEmpty && !shouldRaiseLabel,
+      'top-2': shouldRaiseLabel,
+      '-translate-y-2': shouldRaiseLabel,
+      'scale-75': shouldRaiseLabel,
     }"
   >
     <ng-content select="app-label, [appLabel]" />

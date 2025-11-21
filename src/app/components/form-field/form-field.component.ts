@@ -36,6 +36,7 @@ export class FormFieldComponent implements AfterContentInit {
   protected hasContentSuffix = false;
   protected hasTextSuffix = false;
   protected isFieldValueEmpty = true;
+  protected shouldRaiseLabel = false;
 
   @ContentChild(APP_LABEL) labelChild?: LabelDirective;
   @ContentChild(InputDirective) input?: InputDirective;
@@ -73,12 +74,11 @@ export class FormFieldComponent implements AfterContentInit {
   }
 
   private _initializeChildElement(): void {
-    // TODO: re-add select component support
-    // const childElement = this.input ?? this.select;
     const childElement = this.input;
 
     if (childElement) {
       this.id = childElement.id;
+      this.shouldRaiseLabel = ['date', 'time'].includes(childElement.type());
 
       if (this.labelChild) {
         childElement.hostElement.classList.add('pt-3.5', 'pb-1');
