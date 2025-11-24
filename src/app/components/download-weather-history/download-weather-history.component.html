@@ -1,0 +1,11 @@
+<app-form-field class="max-w-80" subscriptSizing="dynamic">
+  <select appSelect [(ngModel)]="selectedYear">
+    <option selected></option>
+    @for (year of selectableYears; track year) {
+      <option [value]="year">{{ year }}</option>
+    }
+  </select>
+  <app-label>Year</app-label>
+</app-form-field>
+
+<button app-button (click)="download()" [disabled]="!selectedYear">Download Weather History</button>
