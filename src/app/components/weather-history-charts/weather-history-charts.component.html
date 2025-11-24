@@ -1,5 +1,7 @@
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-8">
   <app-chart-temperatures-history [weatherData]="weatherData()" [units]="units()" />
+  <hr />
   <app-chart-humidity-history [weatherData]="weatherData()" [units]="units()" />
+  <hr />
   <app-chart-wind-speed-history [weatherData]="weatherData()" [units]="units()" />
 </div>

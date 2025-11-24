@@ -44,7 +44,7 @@
       }
     </app-form-field>
     <div class="flex justify-end gap-4">
-      <button app-button type="reset">Reset</button>
+      <button app-button appearance="secondary" type="reset">Reset</button>
       <button app-button type="submit">Submit</button>
     </div>
   </form>
@@ -53,7 +53,7 @@
 @if (isLoading$ | async) {
   <app-spinner diameter="80" />
 } @else if (weatherHistoryData$ | async; as weatherHistoryData) {
-  <app-card class="max-w-auto mx-auto my-8 flex max-w-2xl flex-col gap-4">
+  <app-card class="max-w-auto mx-auto my-8 flex max-w-2xl flex-col gap-6">
     <app-weather-history-charts [weatherHistoryData]="weatherHistoryData" />
   </app-card>
 }
