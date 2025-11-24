@@ -19,20 +19,24 @@ export interface WeatherHistoryResponse {
   timezone: string;
   timezone_abbreviation: string;
   elevation: number;
-  daily_units: {
-    time: string;
-    temperature_2m_min: string;
-    temperature_2m_max: string;
-    temperature_2m_mean: string;
-    relative_humidity_2m_mean: string;
-    wind_speed_10m_mean: string;
-  };
-  daily: {
-    time: string[];
-    temperature_2m_min: number[];
-    temperature_2m_max: number[];
-    temperature_2m_mean: number[];
-    relative_humidity_2m_mean: number[];
-    wind_speed_10m_mean: number[];
-  };
+  daily_units: WeatherHistoryUnits;
+  daily: WeatherHistoryDailyData;
+}
+
+export interface WeatherHistoryUnits {
+  time: string;
+  temperature_2m_min: string;
+  temperature_2m_max: string;
+  temperature_2m_mean: string;
+  relative_humidity_2m_mean: string;
+  wind_speed_10m_mean: string;
+}
+
+export interface WeatherHistoryDailyData {
+  time: string[];
+  temperature_2m_min: number[];
+  temperature_2m_max: number[];
+  temperature_2m_mean: number[];
+  relative_humidity_2m_mean: number[];
+  wind_speed_10m_mean: number[];
 }
