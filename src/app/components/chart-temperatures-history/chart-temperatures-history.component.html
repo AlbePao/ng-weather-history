@@ -1,0 +1,5 @@
+<div class="flex w-full flex-col gap-2 rounded">
+  <!-- Temperatures -->
+  <highcharts-chart [options]="chartOptions()" [(update)]="chartUpdate" />
+  <app-radio-options [options]="granularityRadioOptions" [(ngModel)]="timeGranularity" />
+</div>

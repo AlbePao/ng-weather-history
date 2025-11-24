@@ -1,0 +1,70 @@
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ChartHistoryBaseComponent } from '@components/chart-history-base';
+import { RadioOptionsComponent } from '@components/radio-options';
+import { setDataByTimeRange } from '@utils/groupDataByTimeRange';
+import { HighchartsChartComponent } from 'highcharts-angular';
+
+@Component({
+  selector: 'app-chart-temperatures-history',
+  imports: [HighchartsChartComponent, RadioOptionsComponent, FormsModule],
+  templateUrl: './chart-temperatures-history.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ChartTemperaturesHistoryComponent extends ChartHistoryBaseComponent {
+  override chartOptions = computed<Highcharts.Options>(() => {
+    const weatherData = this.weatherData();
+    const units = this.units();
+
+    if (!weatherData || !units) {
+      return { title: { text: 'Temperatures History' } };
+    }
+
+    const granularity = this.timeGranularity();
+    const {
+      time,
+      temperature_2m_mean: meanTemperatures,
+      temperature_2m_min: minTemperatures,
+      temperature_2m_max: maxTemperatures,
+    } = weatherData;
+
+    const { time: formattedTime, data: meanTemperatureData } = setDataByTimeRange(granularity, time, meanTemperatures);
+    const { data: minTemperatureData } = setDataByTimeRange(granularity, time, minTemperatures);
+    const { data: maxTemperatureData } = setDataByTimeRange(granularity, time, maxTemperatures);
+
+    return {
+      title: { text: 'Temperatures History' },
+      xAxis: {
+        title: { text: 'Date' },
+        labels: { rotation: -45 },
+        categories: formattedTime,
+      },
+      yAxis: {
+        title: { text: `Temperature ${units.temperature_2m_mean}` },
+      },
+      series: [
+        {
+          // Mean temperature data
+          name: `Mean Temperature ${units.temperature_2m_mean}`,
+          color: 'oklch(68.1% 0.162 75.834)',
+          data: meanTemperatureData,
+          type: 'line',
+        },
+        {
+          // Min temperature data
+          name: `Min Temperature ${units.temperature_2m_min}`,
+          color: 'oklch(54.6% 0.245 262.881)',
+          data: minTemperatureData,
+          type: 'line',
+        },
+        {
+          // Max temperature data
+          name: `Max Temperature ${units.temperature_2m_max}`,
+          color: 'oklch(44.4% 0.177 26.899)',
+          data: maxTemperatureData,
+          type: 'line',
+        },
+      ],
+    };
+  });
+}
