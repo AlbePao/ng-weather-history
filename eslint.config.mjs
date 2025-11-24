@@ -6,14 +6,14 @@ import rxjsX from 'eslint-plugin-rxjs-x';
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
-export default defineConfig(
+export default defineConfig([
   {
     files: ['**/*.ts'],
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
-      ...angular.configs.tsRecommended,
+      tseslint.configs.recommendedTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
+      angular.configs.tsRecommended,
       jsdoc.configs['flat/recommended-typescript'],
       rxjsX.configs.strict,
       eslintPluginPrettierRecommended,
@@ -31,6 +31,14 @@ export default defineConfig(
       '@angular-eslint/no-lifecycle-call': 'error',
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/prefer-output-readonly': 'warn',
+      '@angular-eslint/directive-selector': [
+        'error',
+        {
+          type: 'attribute',
+          prefix: 'app',
+          style: 'camelCase',
+        },
+      ],
       '@angular-eslint/component-selector': [
         'error',
         {
@@ -97,9 +105,9 @@ export default defineConfig(
   {
     files: ['**/*.html'],
     extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
+      angular.configs.templateRecommended,
+      angular.configs.templateAccessibility,
       eslintPluginPrettierRecommended,
     ],
   },
-);
+]);
