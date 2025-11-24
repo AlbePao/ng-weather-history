@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChartHistoryBaseComponent } from '@components/chart-history-base';
 import { RadioOptionsComponent } from '@components/radio-options';
+import { capitalizeFirstLetter } from '@utils/capitalize-first-letter';
 import { setDataByTimeRange } from '@utils/groupDataByTimeRange';
 import { HighchartsChartComponent } from 'highcharts-angular';
 
@@ -23,7 +24,9 @@ export class ChartWindSpeedHistoryComponent extends ChartHistoryBaseComponent {
     const granularity = this.timeGranularity();
     const { time, wind_speed_10m_mean: meanWindSpeed } = weatherData;
 
-    const { time: formattedTime, data: meanWindSpeedData } = setDataByTimeRange(granularity, time, meanWindSpeed);
+    const { groupedTime, groupedData: meanWindSpeedData } = setDataByTimeRange(granularity, time, meanWindSpeed);
+
+    const formattedTime = groupedTime.map((value) => capitalizeFirstLetter(value.replaceAll('_', ' ')));
 
     return {
       title: { text: 'Wind Speed History' },

@@ -223,35 +223,35 @@ export function groupDataByTimeRange(
  *   1. Builds a temporary date->value mapping from the parallel arrays.
  *   2. Delegates aggregation to `groupDataByTimeRange`.
  *   3. Returns the aggregated result as parallel arrays:
- *      - time: the grouped keys (in chronological order)
- *      - data: the corresponding averaged numeric values
+ *      - groupedTime: the grouped keys (in chronological order)
+ *      - groupedData: the corresponding averaged numeric values
  * @param timeRange - The aggregation granularity to apply.
  * @param time - An array of UTC date strings ("YYYY-MM-DD") corresponding to `data`.
  * @param data - An array of numeric values corresponding to `time`.
  * @throws {Error} if `time` and `data` arrays have different lengths.
  * @returns An object with:
- *   - time: string[] of group labels (ordered chronologically)
- *   - data: number[] of averaged values matching the `time` labels
+ *   - groupedTime: string[] of group labels (ordered chronologically)
+ *   - groupedData: number[] of averaged values matching the `time` labels
  */
 export function setDataByTimeRange(
   timeRange: TimeRangesGranularity,
   time: string[],
   data: number[],
-): { time: string[]; data: number[] } {
+): { groupedTime: string[]; groupedData: number[] } {
   if (time.length !== data.length) {
     throw new Error('Time and data arrays must have the same length');
   }
 
   if (timeRange === 'daily') {
     // No aggregation needed
-    return { time, data };
+    return { groupedTime: time, groupedData: data };
   }
 
   const groupedDataByDate = time.reduce((acc, curr, index) => ({ [curr]: data[index], ...acc }), {});
   const aggregatedData = groupDataByTimeRange(groupedDataByDate, timeRange);
 
   return {
-    time: Object.keys(aggregatedData),
-    data: Object.values(aggregatedData),
+    groupedTime: Object.keys(aggregatedData),
+    groupedData: Object.values(aggregatedData),
   };
 }
