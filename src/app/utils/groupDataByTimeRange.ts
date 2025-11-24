@@ -15,6 +15,16 @@ const MONTH_NAMES = [
   'december',
 ];
 
+/**
+ * Parses an ISO UTC date string in the form "YYYY-MM-DD" into a Date object in UTC.
+ *
+ * The function performs basic validation:
+ * - Splits the input by '-' and converts to numbers.
+ * - Ensures there are exactly three numeric parts (year, month, day) and none are falsy.
+ * - Returns a Date created via Date.UTC(year, month - 1, day) on success, otherwise null.
+ * @param iso - A date string in the format "YYYY-MM-DD" (UTC).
+ * @returns A Date object representing the given UTC date, or null if the input is invalid.
+ */
 const parseDateUTC = (iso: string): Date | null => {
   const parts = iso.split('-').map(Number);
 
@@ -31,6 +41,13 @@ const parseDateUTC = (iso: string): Date | null => {
   return new Date(Date.UTC(y, m - 1, d));
 };
 
+/**
+ * Formats a Date object as an ISO UTC date string "YYYY-MM-DD".
+ *
+ * The function uses the UTC getters so the output represents the date in UTC rather than local time.
+ * @param d - The Date object to format.
+ * @returns A string in the format "YYYY-MM-DD" representing the UTC date portion of `d`.
+ */
 const formatDateUTC = (d: Date): string => {
   const y = d.getUTCFullYear();
   const m = String(d.getUTCMonth() + 1).padStart(2, '0');
@@ -38,7 +55,18 @@ const formatDateUTC = (d: Date): string => {
   return `${y}-${m}-${day}`;
 };
 
-// ISO week algorithm (returns week number and ISO-year)
+/**
+ * Computes the ISO week number and the ISO week-year for a given Date.
+ *
+ * Algorithm summary:
+ * - Normalizes the input to a UTC date (time portion ignored).
+ * - Shifts the date to the Thursday of the current week to determine the ISO year.
+ * - Calculates the week number as the 1-based week index within the ISO year.
+ * @param date - The Date for which to compute the ISO week/year (UTC date part is used).
+ * @returns An object with:
+ *   - week: ISO week number (1..53)
+ *   - year: ISO week-year (the year that the ISO week belongs to)
+ */
 const getISOWeek = (date: Date): { week: number; year: number } => {
   const tmp = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
   const day = tmp.getUTCDay() || 7; // Mon=1..Sun=7
@@ -56,12 +84,39 @@ interface Aggregated {
   meta: { week?: number; month?: number; year?: number; monthName?: string };
 }
 
+/**
+ * Groups and aggregates daily numeric data into the requested time granularity and returns
+ * averaged values for each group.
+ *
+ * Behavior and notes:
+ * - Input `data` is expected as a Record whose keys are UTC date strings "YYYY-MM-DD" and
+ *   whose values are numeric measurements.
+ * - Invalid entries (malformed dates, non-number values, or NaN) are skipped.
+ * - Supported `range` values:
+ *   - "daily": each input date is kept as a separate group (key format: "day_YYYY-MM-DD").
+ *   - "weekly": groups by ISO week and ISO week-year; raw group id includes week number and year.
+ *   - "monthly": groups by calendar month (uses month name and 1-based month number).
+ *   - "yearly": groups by calendar year.
+ * - For weekly, monthly and yearly ranges the final output keys include the group's span using
+ *   the earliest and latest dates in the group, e.g.:
+ *     week_<n>_of_<year>_from_<YYYY-MM-DD>_to_<YYYY-MM-DD>
+ *     month_<name>_<n>_from_<YYYY-MM-DD>_to_<YYYY-MM-DD>
+ *     year_<YYYY>_from_<YYYY-MM-DD>_to_<YYYY-MM-DD>
+ *   Daily keys are returned as "day_YYYY-MM-DD".
+ * - Each group's returned value is the arithmetic average (sum/count) rounded to 2 decimal places.
+ * - Output groups are ordered chronologically (ascending by the group's earliest date).
+ * @param data - Record mapping UTC date strings ("YYYY-MM-DD") to numeric values.
+ * @param range - The desired aggregation granularity ("daily" | "weekly" | "monthly" | "yearly").
+ * @returns A Record whose keys are the formatted group identifiers described above and whose
+ *   values are the averaged numeric value for that group (rounded to two decimals).
+ */
 export function groupDataByTimeRange(
   data: Record<string, number>,
   range: TimeRangesGranularity,
 ): Record<string, number> {
   const groups = new Map<string, Aggregated>();
 
+  // iterate over data and group by range
   for (const [k, v] of Object.entries(data)) {
     const d = parseDateUTC(k);
     if (!d || typeof v !== 'number' || Number.isNaN(v)) {
@@ -158,6 +213,26 @@ export function groupDataByTimeRange(
   return out;
 }
 
+/**
+ * Produces paired arrays of time labels and aggregated values for a chart or timeseries consumer.
+ *
+ * Behavior:
+ * - Validates that `time` and `data` arrays have the same length; throws otherwise.
+ * - For "daily" range, returns the original `time` and `data` arrays unchanged.
+ * - For other ranges ("weekly", "monthly", "yearly"), the function:
+ *   1. Builds a temporary date->value mapping from the parallel arrays.
+ *   2. Delegates aggregation to `groupDataByTimeRange`.
+ *   3. Returns the aggregated result as parallel arrays:
+ *      - time: the grouped keys (in chronological order)
+ *      - data: the corresponding averaged numeric values
+ * @param timeRange - The aggregation granularity to apply.
+ * @param time - An array of UTC date strings ("YYYY-MM-DD") corresponding to `data`.
+ * @param data - An array of numeric values corresponding to `time`.
+ * @throws {Error} if `time` and `data` arrays have different lengths.
+ * @returns An object with:
+ *   - time: string[] of group labels (ordered chronologically)
+ *   - data: number[] of averaged values matching the `time` labels
+ */
 export function setDataByTimeRange(
   timeRange: TimeRangesGranularity,
   time: string[],
