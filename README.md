@@ -1,59 +1,116 @@
 # NgWeather
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.10.
+This is an Angular v20 project to search weather history data of a given address all around the world.
 
-## Development server
+The architecture of the project is inspired from [angular-components-boilerplate](https://github.com/AlbePao/angular-components-boilerplate)
 
-To start a local development server, run:
+## Project setup
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Clone this repository and go to its root from command line, then install the required packages with the following command
 
 ```bash
-ng generate component component-name
+npm i
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Start the project with the following command
 
 ```bash
-ng generate --help
+ng serve -o
 ```
 
-## Building
+The browser opens automatically to [http://localhost:4200/](http://localhost:4200/).
 
-To build the project run:
+## Build
+
+Build the project with the following command
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Lint
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+This project uses [angular-eslint](https://github.com/angular-eslint/angular-eslint#readme) to lint with ESLint.
 
 ```bash
-ng test
+ng lint
 ```
 
-## Running end-to-end tests
+## Features
 
-For end-to-end (e2e) testing, run:
+- [Angular v20](https://angular.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Fontsource](https://fontsource.org/)
+- [highcharts-angular](https://github.com/highcharts/highcharts-angular#readme)
+- [OpenCage Geocoding API](https://opencagedata.com/)
+- [Open-Meteo API](https://open-meteo.com/)
 
-```bash
-ng e2e
-```
+## UI Components documentation
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Atomic components used across the whole application and in other composed components such as dialogs, layouts or page wrappers
 
-## Additional Resources
+- [Button](./src/app/lib/components/button/button.md)
+- [Card](./src/app/lib/components/card/card.md)
+- [Form Field](./src/app/lib/components/form-field/form-field.md)
+- [Icon](./src/app/lib/components/icon/icon.md)
+- [Input](./src/app/lib/components/input/input.md)
+- [Radio Options](./src/app/lib/components/radio-options/radio-options.md)
+- [Spinner](./src/app/lib/components/spinner/spinner.md)
+- [Toast](./src/app/lib/components/toast/toast.md)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Colors
+
+### Gray palette
+
+| Color                                                    | HEX Code  | Name           |
+| -------------------------------------------------------- | --------- | -------------- |
+| ![#F7F7F8](https://placehold.co/32x32/F7F7F8/F7F7F8.png) | `#F7F7F8` | `gray-lighter` |
+| ![#EDEEF2](https://placehold.co/32x32/EDEEF2/EDEEF2.png) | `#EDEEF2` | `gray-light`   |
+| ![#DADBDF](https://placehold.co/32x32/DADBDF/DADBDF.png) | `#DADBDF` | `gray`         |
+| ![#B0B0B0](https://placehold.co/32x32/B0B0B0/B0B0B0.png) | `#B0B0B0` | `gray-dark`    |
+| ![#636363](https://placehold.co/32x32/636363/636363.png) | `#636363` | `gray-darker`  |
+
+### Primary palette
+
+| Color                                                    | HEX Code  | Name              |
+| -------------------------------------------------------- | --------- | ----------------- |
+| ![#DEE7F8](https://placehold.co/32x32/DEE7F8/DEE7F8.png) | `#DEE7F8` | `primary-lighter` |
+| ![#BCD0F0](https://placehold.co/32x32/BCD0F0/BCD0F0.png) | `#BCD0F0` | `primary-light`   |
+| ![#2570EA](https://placehold.co/32x32/2570EA/2570EA.png) | `#2570EA` | `primary`         |
+| ![#1F498E](https://placehold.co/32x32/1F498E/1F498E.png) | `#1F498E` | `primary-dark`    |
+
+### Secondary palette
+
+| Color                                                    | HEX Code  | Name                |
+| -------------------------------------------------------- | --------- | ------------------- |
+| ![#EEE1FF](https://placehold.co/32x32/EEE1FF/EEE1FF.png) | `#EEE1FF` | `secondary-lighter` |
+| ![#DEC4FF](https://placehold.co/32x32/DEC4FF/DEC4FF.png) | `#DEC4FF` | `secondary-light`   |
+| ![#9747FF](https://placehold.co/32x32/9747FF/9747FF.png) | `#9747FF` | `secondary`         |
+| ![#6730AD](https://placehold.co/32x32/6730AD/6730AD.png) | `#6730AD` | `secondary-dark`    |
+
+### Success palette
+
+| Color                                                    | HEX Code  | Name              |
+| -------------------------------------------------------- | --------- | ----------------- |
+| ![#E1FCE7](https://placehold.co/32x32/E1FCE7/E1FCE7.png) | `#E1FCE7` | `success-lighter` |
+| ![#C4FAD0](https://placehold.co/32x32/C4FAD0/C4FAD0.png) | `#C4FAD0` | `success-light`   |
+| ![#47EF6C](https://placehold.co/32x32/47EF6C/47EF6C.png) | `#47EF6C` | `success`         |
+| ![#2CAC49](https://placehold.co/32x32/2CAC49/2CAC49.png) | `#2CAC49` | `success-dark`    |
+
+### Danger palette
+
+| Color                                                    | HEX Code  | Name             |
+| -------------------------------------------------------- | --------- | ---------------- |
+| ![#FADBE5](https://placehold.co/32x32/FADBE5/FADBE5.png) | `#FADBE5` | `danger-lighter` |
+| ![#F5B8CA](https://placehold.co/32x32/F5B8CA/F5B8CA.png) | `#F5B8CA` | `danger-light`   |
+| ![#DF215A](https://placehold.co/32x32/DF215A/DF215A.png) | `#DF215A` | `danger`         |
+| ![#BA2853](https://placehold.co/32x32/BA2853/BA2853.png) | `#BA2853` | `danger-dark`    |
+
+### Info palette
+
+| Color                                                    | HEX Code  | Name           |
+| -------------------------------------------------------- | --------- | -------------- |
+| ![#FFFBEC](https://placehold.co/32x32/FFFBEC/FFFBEC.png) | `#FFFBEC` | `info-lighter` |
+| ![#FFF7D9](https://placehold.co/32x32/FFF7D9/FFF7D9.png) | `#FFF7D9` | `info-light`   |
+| ![#FFE589](https://placehold.co/32x32/FFE589/FFE589.png) | `#FFE589` | `info`         |
+| ![#F2AE2A](https://placehold.co/32x32/F2AE2A/F2AE2A.png) | `#F2AE2A` | `info-dark`    |
