@@ -46,21 +46,21 @@ export class ChartTemperaturesHistoryComponent extends ChartHistoryBaseComponent
         {
           // Mean temperature data
           name: `Mean Temperature ${units.temperature_2m_mean}`,
-          color: 'oklch(68.1% 0.162 75.834)',
+          color: '#d08700',
           data: meanTemperatureData,
           type: 'line',
         },
         {
           // Min temperature data
           name: `Min Temperature ${units.temperature_2m_min}`,
-          color: 'oklch(54.6% 0.245 262.881)',
+          color: '#155dfc',
           data: minTemperatureData,
           type: 'line',
         },
         {
           // Max temperature data
           name: `Max Temperature ${units.temperature_2m_max}`,
-          color: 'oklch(44.4% 0.177 26.899)',
+          color: '#9f0712',
           data: maxTemperatureData,
           type: 'line',
         },

@@ -38,7 +38,7 @@ export class ChartWindSpeedHistoryComponent extends ChartHistoryBaseComponent {
       series: [
         {
           // Wind speed data
-          color: 'green',
+          color: '#00a63e',
           data: meanWindSpeedData,
           type: 'line',
           showInLegend: false,

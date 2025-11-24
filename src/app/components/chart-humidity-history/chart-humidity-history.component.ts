@@ -38,7 +38,7 @@ export class ChartHumidityHistoryComponent extends ChartHistoryBaseComponent {
       series: [
         {
           // Humidity data
-          color: 'oklch(60.9% 0.126 221.723)',
+          color: '#0092b8',
           data: meanHumidityData,
           type: 'line',
           showInLegend: false,
