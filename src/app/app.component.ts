@@ -1,4 +1,4 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '@components/button';
@@ -7,6 +7,7 @@ import { FormFieldModule } from '@components/form-field';
 import { InputDirective } from '@components/input';
 import { SpinnerComponent } from '@components/spinner';
 import { ToastService } from '@components/toast';
+import { WeatherHistoryChartsComponent } from '@components/weather-history-charts';
 import { COUNTRY_CODES } from '@constants/country-codes';
 import { GeocodingDataParams } from '@interfaces/geocoding';
 import { GeocodingService } from '@services/geocoding.service';
@@ -24,7 +25,7 @@ import { catchError, map, merge, of, shareReplay, Subject, switchMap, tap } from
     FormFieldModule,
     InputDirective,
     ButtonComponent,
-    JsonPipe,
+    WeatherHistoryChartsComponent,
   ],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -71,7 +72,7 @@ export class AppComponent {
     ),
   );
 
-  weatherData$ = this.geocodingCoordinates$.pipe(
+  weatherHistoryData$ = this.geocodingCoordinates$.pipe(
     switchMap((coords) => {
       if (coords) {
         const { lat, lng } = coords;
@@ -100,8 +101,8 @@ export class AppComponent {
   isLoading$ = merge(
     // When user clicks on search button, map the emission to true to show the spinner
     this._submitHandler$.pipe(map(() => true)),
-    // When weatherData$ emits a value, map it to false to hide the spinner
-    this.weatherData$.pipe(map(() => false)),
+    // When weatherHistoryData$ emits a value, map it to false to hide the spinner
+    this.weatherHistoryData$.pipe(map(() => false)),
   );
 
   submit(): void {

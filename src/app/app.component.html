@@ -52,6 +52,8 @@
 
 @if (isLoading$ | async) {
   <app-spinner diameter="80" />
-} @else if (weatherData$ | async; as weatherData) {
-  <pre>{{ weatherData | json }}</pre>
+} @else if (weatherHistoryData$ | async; as weatherHistoryData) {
+  <app-card class="max-w-auto mx-auto my-8 flex max-w-2xl flex-col gap-4">
+    <app-weather-history-charts [weatherHistoryData]="weatherHistoryData" />
+  </app-card>
 }
