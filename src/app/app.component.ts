@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '@components/button';
 import { CardComponent } from '@components/card';
+import { DownloadWeatherHistoryComponent } from '@components/download-weather-history';
 import { FormFieldModule } from '@components/form-field';
 import { InputDirective } from '@components/input';
 import { SpinnerComponent } from '@components/spinner';
@@ -26,9 +27,13 @@ import { catchError, map, merge, of, shareReplay, Subject, switchMap, tap } from
     InputDirective,
     ButtonComponent,
     WeatherHistoryChartsComponent,
+    DownloadWeatherHistoryComponent,
   ],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'flex grow flex-col',
+  },
 })
 export class AppComponent {
   private readonly _fb = inject(FormBuilder);
@@ -45,6 +50,20 @@ export class AppComponent {
     startDate: this._fb.nonNullable.control<string>('', Validators.required),
     endDate: this._fb.nonNullable.control<string>('', [Validators.required, DateValidators.maxDateToday]),
   });
+
+  get currentYear(): string | null {
+    const { startDate, endDate } = this.form.getRawValue();
+
+    if (!this.form.valid || !startDate || !endDate) {
+      return null;
+    }
+
+    const startYear = new Date(startDate).getFullYear().toString();
+    const endYear = new Date(endDate).getFullYear().toString();
+
+    // Result is the same year if start and end date are in the same year, otherwise return end year
+    return startYear === endYear ? startYear : endYear;
+  }
 
   private readonly _submitHandler$ = new Subject<GeocodingDataParams>();
 
@@ -70,6 +89,7 @@ export class AppComponent {
         catchError(() => of(null)),
       ),
     ),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   weatherHistoryData$ = this.geocodingCoordinates$.pipe(

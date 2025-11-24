@@ -1,4 +1,5 @@
-<app-card class="mx-auto my-8 flex max-w-96 flex-col gap-4">
+<app-card class="mx-auto my-8 max-w-96">
+  <div class="h3 text-center">Search Weather History data</div>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <app-form-field>
       <input appInput type="text" [formControl]="form.controls.address" />
@@ -54,6 +55,7 @@
   <app-spinner diameter="80" />
 } @else if (weatherHistoryData$ | async; as weatherHistoryData) {
   <app-card class="max-w-auto mx-auto my-8 flex max-w-2xl flex-col gap-6">
+    <app-download-weather-history [coordinates]="geocodingCoordinates$ | async" [currentYear]="currentYear" />
     <app-weather-history-charts [weatherHistoryData]="weatherHistoryData" />
   </app-card>
 }
