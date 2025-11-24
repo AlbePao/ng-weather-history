@@ -8,6 +8,7 @@
       "@components/*": ["src/app/components/*"],
       "@constants/*": ["src/app/constants/*"],
       "@interfaces/*": ["src/app/interfaces/*"],
+      "@providers/*": ["src/app/providers/*"],
       "@services/*": ["src/app/services/*"],
       "@utils/*": ["src/app/utils/*"],
       "@validators/*": ["src/app/validators/*"]
