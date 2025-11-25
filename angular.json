@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-weather": {
+    "ng-weather-history": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -83,10 +83,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ng-weather:build:production"
+              "buildTarget": "ng-weather-history:build:production"
             },
             "development": {
-              "buildTarget": "ng-weather:build:development"
+              "buildTarget": "ng-weather-history:build:development"
             }
           },
           "defaultConfiguration": "development"

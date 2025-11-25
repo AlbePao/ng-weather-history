@@ -1,5 +1,5 @@
 {
-  "name": "ng-weather",
+  "name": "ng-weather-history",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
