@@ -86,6 +86,7 @@ export class AppComponent {
               icon: 'warning',
             }),
         }),
+        // Even on error, we want to continue the stream with a null value to prevent breaking the chain and allow weatherHistoryData$ to handle the null case
         catchError(() => of(null)),
       ),
     ),
@@ -109,10 +110,12 @@ export class AppComponent {
                   icon: 'warning',
                 }),
             }),
+            // Even on error, we want to continue the stream with a null value to prevent breaking the chain and allow the UI to handle the null case by hiding the loading spinner
             catchError(() => of(null)),
           );
       }
 
+      // If coords is null, return an observable emitting null to indicate no data to allow the UI to hide the loading spinner
       return of(null);
     }),
     shareReplay({ bufferSize: 1, refCount: true }),
