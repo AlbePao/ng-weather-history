@@ -43,13 +43,18 @@ export class AppComponent {
 
   protected readonly countryCodes = COUNTRY_CODES;
 
-  form = this._fb.group({
-    address: this._fb.nonNullable.control<string>('', Validators.required),
-    city: this._fb.nonNullable.control<string>('', Validators.required),
-    countryCode: this._fb.nonNullable.control<string>('', Validators.required),
-    startDate: this._fb.nonNullable.control<string>('', Validators.required),
-    endDate: this._fb.nonNullable.control<string>('', [Validators.required, DateValidators.maxDateToday]),
-  });
+  form = this._fb.group(
+    {
+      address: this._fb.nonNullable.control<string>('', Validators.required),
+      city: this._fb.nonNullable.control<string>('', Validators.required),
+      countryCode: this._fb.nonNullable.control<string>('', Validators.required),
+      startDate: this._fb.nonNullable.control<string>('', Validators.required),
+      endDate: this._fb.nonNullable.control<string>('', [Validators.required, DateValidators.maxDateToday]),
+    },
+    {
+      validators: [DateValidators.startDateBeforeEndDate()],
+    },
+  );
 
   get currentYear(): string | null {
     const { startDate, endDate } = this.form.getRawValue();
@@ -133,7 +138,7 @@ export class AppComponent {
       // Form is invalid, show error toast and prevent submission
       this._toastService.show({
         color: 'danger',
-        message: 'Please, fill the required fields',
+        message: 'Please, fix invalid form fields',
         icon: 'warning',
       });
       return;

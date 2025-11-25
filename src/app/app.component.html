@@ -43,6 +43,9 @@
       @if (form.controls.endDate | showControlError: 'maxDateToday') {
         <app-error>Max end date must be today</app-error>
       }
+      @if (form.controls.endDate | showControlError: 'startDateBeforeEndDate') {
+        <app-error>End date must be higher than start date</app-error>
+      }
     </app-form-field>
     <div class="flex justify-end gap-4">
       <button app-button appearance="secondary" type="reset">Reset</button>
