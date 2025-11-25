@@ -54,14 +54,14 @@ As of Angular 21, zone.js is no longer included by default in new apps. This pro
 
 Atomic components used across the whole application and in other composed components
 
-- [Button](./src/app/lib/components/button/button.md)
-- [Card](./src/app/lib/components/card/card.md)
-- [Form Field](./src/app/lib/components/form-field/form-field.md)
-- [Icon](./src/app/lib/components/icon/icon.md)
-- [Input](./src/app/lib/components/input/input.md)
-- [Radio Options](./src/app/lib/components/radio-options/radio-options.md)
-- [Spinner](./src/app/lib/components/spinner/spinner.md)
-- [Toast](./src/app/lib/components/toast/toast.md)
+- [Button](./src/app/components/button/button.md)
+- [Card](./src/app/components/card/card.md)
+- [Form Field](./src/app/components/form-field/form-field.md)
+- [Icon](./src/app/components/icon/icon.md)
+- [Input](./src/app/components/input/input.md)
+- [Radio Options](./src/app/components/radio-options/radio-options.md)
+- [Spinner](./src/app/components/spinner/spinner.md)
+- [Toast](./src/app/components/toast/toast.md)
 
 ## Colors
 

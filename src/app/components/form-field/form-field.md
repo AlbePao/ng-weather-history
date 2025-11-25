@@ -40,7 +40,8 @@ type ControlErrors =
   | 'maxlength'
   | 'min'
   | 'max'
-  | 'autocompleteInputInvalid';
+  | 'startDateBeforeEndDate'
+  | 'maxDateToday';
 ```
 
 ## Example
