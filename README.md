@@ -1,6 +1,6 @@
-# NgWeather
+# Weather History
 
-This is an Angular v20 project to search weather history data of a given address all around the world.
+This is an Angular v21 project to search weather history data of a given address all around the world.
 
 The architecture of the project is inspired from [angular-components-boilerplate](https://github.com/AlbePao/angular-components-boilerplate)
 
@@ -36,18 +36,23 @@ This project uses [angular-eslint](https://github.com/angular-eslint/angular-esl
 ng lint
 ```
 
+## Note about zone.js
+
+As of Angular 21, zone.js is no longer included by default in new apps. This project follows best practices for developing a zoneless Angular application by scaffolding new components with `ChangeDetectionStrategy` set to `OnPush` and using signals to manage components' internal state. RxJS is still used to handle http requests and to manage the resulting data streams.
+
 ## Features
 
-- [Angular v20](https://angular.dev/)
-- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Angular v21](https://angular.dev/)
+- [Tailwind CSS v4.1](https://tailwindcss.com/)
 - [Fontsource](https://fontsource.org/)
+- [angular-eslint](https://github.com/angular-eslint/angular-eslint/)
 - [highcharts-angular](https://github.com/highcharts/highcharts-angular#readme)
 - [OpenCage Geocoding API](https://opencagedata.com/)
 - [Open-Meteo API](https://open-meteo.com/)
 
 ## UI Components documentation
 
-Atomic components used across the whole application and in other composed components such as dialogs, layouts or page wrappers
+Atomic components used across the whole application and in other composed components
 
 - [Button](./src/app/lib/components/button/button.md)
 - [Card](./src/app/lib/components/card/card.md)
