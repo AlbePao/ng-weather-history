@@ -6,7 +6,7 @@ import { Colors } from '@interfaces/colors';
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': '`border ${borderClass} rounded-sm block p-4`',
+    '[class]': '`border ${borderClass} rounded-sm block p-4 bg-white`',
   },
 })
 export class CardComponent {
